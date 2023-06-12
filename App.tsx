@@ -37,8 +37,7 @@ const playerConfig: PlayerConfiguration = {
   libraryLocation: 'theoplayer',
   // Get your THEOplayer license from https://portal.theoplayer.com/
   // Without a license, only demo sources hosted on '*.theoplayer.com' domains can be played.
-  license:
-    'sZP7IYe6T6P6IS5oTSR_C6zr3QBoFSakISh-TS0oTOzc0QX6IQ31ClfzTDC6FOPlUY3zWokgbgjNIOf9flI6ISfZClBLFSAK0Sa-3uX1TOz_CSf_FS36Il3gCDIgTuR_I6fVfK4_bQgZCYxNWoryIQXzImf90SC_3LaZTu5i0u5i0Oi6Io4pIYP1UQgqWgjeCYxgflEc3lRo0leo3l0Z0ueiFOPeWok1dDrLYtA1Ioh6TgV6v6fVfKcqCoXVdQjLUOfVfGxEIDjiWQXrIYfpCoj-fgzVfKxqWDXNWG3ybojkbK3gflNWf6E6FOPVWo31WQ1qbta6FOPzdQ4qbQc1sD4ZFK3qWmPUFOPLIQ-LflNWfK1zWDikf6i6CDrebKjNIOfVfKXpIwPqdDxzU6fVfKINbK4zU6fVfKgqbZfVfGxNsK4pf6i6UwIqbZfVfGUgCKjLfgzVfG3gWKxydDkibK4LbogqW6f9UwPkImi6IK41Uw4ZIY06Tg-Uya',
+  license: undefined,
   mediaControl: {
     mediaSessionEnabled: true,
   },
@@ -103,7 +102,7 @@ export default function App() {
                   {!Platform.isTV && (
                     <>
                       <AirplayButton />
-                      <ChromecastButton />
+                      {/* <ChromecastButton /> */}
                     </>
                   )}
                   <LanguageMenuButton />
