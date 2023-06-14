@@ -1,6 +1,13 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {Platform, StyleSheet, View, ViewStyle} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  View,
+  ViewStyle,
+  Text,
+  ScrollView,
+} from 'react-native';
 import {
   AirplayButton,
   CastMessage,
@@ -50,6 +57,14 @@ const source: SourceDescription = {
       // type: 'application/vnd.apple.mpegurl',
     },
   ],
+  textTracks: [
+    {
+      default: true,
+      src: 'https://cdn.theoplayer.com/dash/theoplayer/thumbnails/big_buck_bunny_thumbnails.vtt',
+      label: 'thumbnails',
+      kind: 'metadata',
+    },
+  ],
   poster: 'https://cdn.theoplayer.com/video/big_buck_bunny/poster.jpg',
   metadata: {
     title: 'Big Buck Bunny',
@@ -94,15 +109,18 @@ export default function App() {
     position: 'absolute',
     right: needsBorder ? 5 : 0,
     top: needsBorder ? 20 : 0,
+    // height: '30%',
   };
 
   return (
-    <View style={[StyleSheet.absoluteFill, {backgroundColor: '#000000'}]}>
+    <View style={[StyleSheet.absoluteFill, {backgroundColor: '#000'}]}>
       <View style={PLAYER_CONTAINER_STYLE}>
         <THEOplayerView config={playerConfig} onPlayerReady={onPlayerReady}>
           {player !== undefined && chromeless && (
             <UiContainer
-              theme={{...DEFAULT_THEOPLAYER_THEME}}
+              theme={{
+                ...DEFAULT_THEOPLAYER_THEME,
+              }}
               player={player}
               behind={<CenteredDelayedActivityIndicator size={50} />}
               top={
@@ -136,7 +154,7 @@ export default function App() {
                     <CastMessage />
                   </ControlBar>
                   <ControlBar>
-                    <SeekBar />
+                    <SeekBar style={{backgroundColor: 'red'}} />
                   </ControlBar>
                   <ControlBar>
                     <MuteButton />
@@ -154,42 +172,3 @@ export default function App() {
     </View>
   );
 }
-
-// import React from 'react';
-// import {Platform, View} from 'react-native';
-// import {
-//   PlayerConfiguration,
-//   SourceDescription,
-//   PlayerEventType,
-//   THEOplayer,
-//   THEOplayerView,
-// } from 'react-native-theoplayer';
-
-// const playerConfig: PlayerConfiguration = {
-//   license: undefined, // insert THEOplayer React Native license here
-// };
-
-// const source: SourceDescription = {
-//   sources: [
-//     {
-//       src: 'https://cdn.theoplayer.com/video/elephants-dream/playlist-single-audio.m3u8',
-//       type: 'application/x-mpegurl',
-//     },
-//   ],
-// };
-
-// const onReady = (player: THEOplayer) => {
-//   player.autoplay = true;
-//   player.source = source;
-//   player.addEventListener(PlayerEventType.ERROR, console.log);
-// };
-
-// const App = () => {
-//   return (
-//     <View style={{position: 'absolute', top: 0, left: 0, bottom: 0, right: 0}}>
-//       <THEOplayerView config={playerConfig} onPlayerReady={onReady} />
-//     </View>
-//   );
-// };
-
-// export default App;
